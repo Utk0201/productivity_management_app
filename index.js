@@ -19,19 +19,6 @@ app.set('views',path.join(__dirname,'views2'));  // views2 is written to signify
 app.use(express.static('assets'));  // serve static assets
 app.use(express.urlencoded());      // use express urlencoded middleware
 app.use('/',require('./routes/index'));
-app.use('/tasks',require('./routes/index'));
-
-// app.get('/deleteTask',(req,res)=>{
-//     // console.log(req.query);
-//     // res.redirect('/');
-//     var id = req.query.id;
-//     Tasks.findByIdAndDelete(id,(err)=>{
-//         if(err){
-//             console.log("error in deleting task");
-//         }
-//         res.redirect('/');
-//     })
-// });
 
 app.listen(3000,()=>{
     console.log('app started at port 3000'); 
