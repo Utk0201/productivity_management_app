@@ -18,33 +18,20 @@ app.set('views',path.join(__dirname,'views2'));  // views2 is written to signify
 // include the above line
 app.use(express.static('assets'));  // serve static assets
 app.use(express.urlencoded());      // use express urlencoded middleware
+app.use('/',require('./routes/index'));
+app.use('/tasks',require('./routes/index'));
 
-
-
-app.get('/',async (req,res)=>{
-    // while(tasks.length) tasks.pop;       //  to reset
-    // for(aTask of tasks) console.log(aTask);
-    const tasks = await Tasks.find({}).sort({start:1});
-    console.log(tasks);
-    res.render('home',{task_list:tasks});
-});
-
-app.post('/addTasks',(req,res)=>{
-    // console.log(req.body);  //  I get undefined
-    // reason: the data passed is in url encoded form but i want it in json form
-    // so, need to use express.urlencoded
-    Tasks.create({
-        name:req.body.taskName,
-        start:req.body.taskStart
-    },function(er,newTask){
-        if(er){
-            console.log("error in creating task");
-            return er;
-        }
-        console.log("New task is : ",newTask);
-        res.redirect('/');
-    });
-});
+// app.get('/deleteTask',(req,res)=>{
+//     // console.log(req.query);
+//     // res.redirect('/');
+//     var id = req.query.id;
+//     Tasks.findByIdAndDelete(id,(err)=>{
+//         if(err){
+//             console.log("error in deleting task");
+//         }
+//         res.redirect('/');
+//     })
+// });
 
 app.listen(3000,()=>{
     console.log('app started at port 3000'); 

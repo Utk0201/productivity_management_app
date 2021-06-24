@@ -7,23 +7,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Productivity management</title>
     <link rel="stylesheet" href="app.css">
+    <!-- <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
     <h1>Welcome to productivity mgmt app!!</h1>
     <div class="container">
         <% for(var task of task_list){ %>
-            <div class="taskStyle">
-                <h1 class="tName">
-                    <%=task.name %>
-                </h1>
-                <h1 class="tStart">
-                    <%=task.start %>
-                </h1>
+            <div class="contentRow">
+                <div class="taskStyle">
+                    <h1 class="tName">
+                        <%=task.name %>
+                    </h1>
+                    <h1 class="tStart">
+                        <%=task.start %>
+                    </h1>
+                </div>
+                <div class="deleteBtn"><a href="/tasks/delete/?id=<%-task._id%>"><i class="fa fa-trash"></i></a></div>
             </div>
         <% } %>
     </div>
-    <form class="submitForm" action="/addTasks" method="POST">
+    <form class="submitForm" action="/tasks/add" method="POST">
         <input type="text" name="taskName">
         <input type="time" name="taskStart">
         <button>Add task</button>
